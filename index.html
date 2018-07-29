@@ -8,10 +8,10 @@
     html,
     body,
     canvas {
-      margin: 0;
+      margin: auto;
       padding: 0;
-      width: 100%;
-      height: 100%;
+      width: 1024px;
+      height: 896px;
       font-size: 0;
     }
   </style>
@@ -24,17 +24,26 @@
     var canvas = document.getElementById("redbit-canvas");
     var engine = new BABYLON.Engine(canvas);
     var scene = new BABYLON.Scene(engine);
-    scene.clearColor = new BABYLON.Color3(0.5, 0.5, 0.6);
+    scene.clearColor = new BABYLON.Color3(0.2, 0.2, 0.2);
 
     camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 0, 0), scene);
     camera.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
-    camera.orthoTop = 1;
-    camera.orthoBottom = 1;
-    camera.orthoLeft = 1;
-    camera.orthoRight = 1;
+    camera.orthoTop = 224;
+    camera.orthoBottom = -224;
+    camera.orthoLeft = -256;
+    camera.orthoRight = 256;
 
-    var robotSpriteManager = new BABYLON.SpriteManager("robotSpriteManager", "Assets/Sprites/Robot.png", 2, 32, scene);
+    var robotSpriteManager = new BABYLON.SpriteManager("robotSpriteManager",
+      "Assets/Sprites/Robot.png",
+      1,
+      64,
+      scene,
+      0.01,
+      BABYLON.Texture.NEAREST_SAMPLINGMODE);
+
     var robot = new BABYLON.Sprite("robot", robotSpriteManager);
+    robot.size = 256;
+    robot.position.z = 1;
 
     var renderLoop = function() {
       scene.render();
