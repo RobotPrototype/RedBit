@@ -1,7 +1,7 @@
-VIEW_TOP = 224;
-VIEW_BOTTOM = -224;
-VIEW_LEFT = -256;
-VIEW_RIGHT = 256;
+const VIEW_TOP = 224;
+const VIEW_BOTTOM = -224;
+const VIEW_LEFT = -256;
+const VIEW_RIGHT = 256;
 
 function createContext(canvasName) {
   console.log("Create context: " + canvasName);
