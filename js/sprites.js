@@ -17,8 +17,8 @@ function sprite(factory, name) {
   console.log("Create sprite: " + name);
 
   var sprite = new BABYLON.Sprite(name, factory);
-  sprite.height = factory.cellHeight + 0.5;
-  sprite.width = factory.cellWidth + 0.5;
+  sprite.height = factory.cellHeight + 1;
+  sprite.width = factory.cellWidth + 1;
   sprite.position.z = 1;
   return sprite;
 }
