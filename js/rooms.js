@@ -5,7 +5,7 @@ var room = {
     [6, 0, 7],
     [0, 0, 1],
   ],
-  tileArt: "Assets/Sprites/TileTest.png",
+  tileArt: "Assets/Sprites/LSurfaceTest.png",
   tileSize: 32,
 }
 
