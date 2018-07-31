@@ -1,0 +1,43 @@
+{
+  "platforms": [{
+      "top": 2,
+      "bottom": -1,
+      "left": -4,
+      "right": 5,
+      "tileArt": "Assets/Sprites/LSurfaceTest.png",
+      "tileSize": 32
+    },
+    {
+      "top": -3,
+      "bottom": -5,
+      "left": -1,
+      "right": 2,
+      "tileArt": "Assets/Sprites/TileTest.png",
+      "tileSize": 32
+    },
+    {
+      "top": 5,
+      "bottom": 5,
+      "left": 3,
+      "right": 3,
+      "tileArt": "Assets/Sprites/TileTest.png",
+      "tileSize": 32
+    },
+    {
+      "top": 5,
+      "bottom": 5,
+      "left": -1,
+      "right": 1,
+      "tileArt": "Assets/Sprites/TileTest.png",
+      "tileSize": 32
+    },
+    {
+      "top": 6,
+      "bottom": 4,
+      "left": -4,
+      "right": -4,
+      "tileArt": "Assets/Sprites/TileTest.png",
+      "tileSize": 32
+    }
+  ]
+}
