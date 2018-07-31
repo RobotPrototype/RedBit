@@ -1,7 +1,8 @@
 function main(canvasName) {
+
   var context = createContext(canvasName);
 
-  drawRoom(context.scene);
+  loadRoom(context.scene, "Assets/Rooms/RoomTest.json");
 
   var renderLoop = function() {
     context.scene.render();

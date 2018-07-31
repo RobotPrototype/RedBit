@@ -1,46 +1,26 @@
-const roomSpec = {
-  platforms: [{
-      top: 2,
-      bottom: -1,
-      left: -4,
-      right: 5,
-      tileArt: "Assets/Sprites/LSurfaceTest.png",
-      tileSize: 32
-    },
-    {
-      top: -3,
-      bottom: -5,
-      left: -1,
-      right: 2,
-      tileArt: "Assets/Sprites/TileTest.png",
-      tileSize: 32
-    },
-    {
-      top: 5,
-      bottom: 5,
-      left: 3,
-      right: 3,
-      tileArt: "Assets/Sprites/TileTest.png",
-      tileSize: 32
-    },
-    {
-      top: 5,
-      bottom: 5,
-      left: -1,
-      right: 1,
-      tileArt: "Assets/Sprites/TileTest.png",
-      tileSize: 32
-    },
-    {
-      top: 6,
-      bottom: 4,
-      left: -4,
-      right: -4,
-      tileArt: "Assets/Sprites/TileTest.png",
-      tileSize: 32
+function loadRoom(scene, roomFile) {
+  processFile(roomFile, function(text) {
+    var roomSpec = JSON.parse(text);
+    var room = parseRoom(roomSpec);
+    var cameraRow = (room.top + room.bottom) / 2;
+    var cameraCol = (room.right + room.left) / 2;
+
+    for (var i = 0; i < room.tiles.length; i++) {
+      var tile = room.tiles[i];
+      console.log(tile);
+
+      var tileFactory = spriteFactory(scene, tile.art, tile.size, tile.art, 1);
+      tileSprite = sprite(tileFactory, tile.row + "," + tile.col);
+
+      var y = (tile.row * tile.size) - (cameraRow * tile.size);
+      var x = (tile.col * tile.size) - (cameraCol * tile.size);
+      tileSprite.position.y = y;
+      tileSprite.position.x = x;
+      tileSprite.cellIndex = tile.type + 1;
+      console.log(tileSprite);
     }
-  ]
-};
+  });
+}
 
 function parseRoom(roomSpec) {
   var top = 0;
@@ -102,25 +82,4 @@ function tileType(row, col, platformSpec) {
   var isRight = col == platformSpec.right ? 8 : 0;
   var type = isTop + isBottom + isLeft + isRight;
   return type;
-}
-
-function drawRoom(scene) {
-  var room = parseRoom(roomSpec);
-  var cameraRow = (room.top + room.bottom) / 2;
-  var cameraCol = (room.right + room.left) / 2;
-
-  for (var i = 0; i < room.tiles.length; i++) {
-    var tile = room.tiles[i];
-    console.log(tile);
-
-    var tileFactory = spriteFactory(scene, tile.art, tile.size, tile.art, 1);
-    tileSprite = sprite(tileFactory, tile.row + "," + tile.col);
-
-    var y = (tile.row * tile.size) - (cameraRow * tile.size);
-    var x = (tile.col * tile.size) - (cameraCol * tile.size);
-    tileSprite.position.y = y;
-    tileSprite.position.x = x;
-    tileSprite.cellIndex = tile.type + 1;
-    console.log(tileSprite);
-  }
 }
