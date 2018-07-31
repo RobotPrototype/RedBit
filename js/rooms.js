@@ -16,7 +16,7 @@ function loadRoom(scene, roomFile) {
       var x = (tile.col * tile.size) - (cameraCol * tile.size);
       tileSprite.position.y = y;
       tileSprite.position.x = x;
-      tileSprite.cellIndex = tile.type + 1;
+      tileSprite.cellIndex = tile.type;
       console.log(tileSprite);
     }
   });
