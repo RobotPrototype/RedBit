@@ -1,0 +1,21 @@
+[{
+    "shape": "rectangle",
+    "tileArt": "Assets/Sprites/TileTest.png",
+    "tileSize": 32
+  },
+  {
+    "shape": "beveled",
+    "tileArt": "Assets/Sprites/TileTest.png",
+    "tileSize": 32
+  },
+  {
+    "shape": "rectangle",
+    "tileArt": "Assets/Sprites/TileTest2.png",
+    "tileSize": 32
+  },
+  {
+    "shape": "beveled",
+    "tileArt": "Assets/Sprites/TileTest2.png",
+    "tileSize": 32
+  }
+]

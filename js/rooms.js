@@ -1,69 +1,70 @@
-function loadRoom(scene, roomFile) {
-  processFile(roomFile, function(text) {
-    var roomSpec = JSON.parse(text);
-    var room = parseRoom(roomSpec);
-    var cameraRow = (room.top + room.bottom) / 2;
-    var cameraCol = (room.right + room.left) / 2;
+function loadRoom(scene, tileFile, styleFile) {
+  processFile(tileFile, function(tileText) {
+    var tiles = JSON.parse(tileText);
+    var nRows = tiles.length;
+    var nCols = tiles[0].length;
+    console.log(`Tiles: ${nRows} rows x ${nCols} cols`);
 
-    for (var i = 0; i < room.tiles.length; i++) {
-      var tile = room.tiles[i];
-      console.log(tile);
+    var styleOccurrences = countStyleOccurrences(tiles);
+    console.log("Style occurrences: " + styleOccurrences);
 
-      var tileFactory = spriteFactory(scene, tile.art, tile.size, tile.art, 1);
-      tileSprite = sprite(tileFactory, tile.row + "," + tile.col);
+    processFile(styleFile, function(styleText) {
+      var styles = JSON.parse(styleText);
+      console.log("Styles: " + styles.length);
 
-      var y = (tile.row * tile.size) - (cameraRow * tile.size);
-      var x = (tile.col * tile.size) - (cameraCol * tile.size);
-      tileSprite.position.y = y;
-      tileSprite.position.x = x;
-      tileSprite.cellIndex = tile.type;
-      console.log(tileSprite);
-    }
-  });
+      var spriteFactories = createSpriteFactories(scene, styles, styleOccurrences);
+
+      for (var row = 0; row < nRows; row++) {
+        for (var col = 0; col < nCols; col++) {
+          var styleIndex = tiles[row][col];
+          if (!styleIndex) {
+            continue;
+          }
+
+          var factory = spriteFactories[styleIndex - 1];
+          var tileSprite = sprite(factory, row + "," + col);
+          var style = styles[styleIndex - 1];
+          tileSprite.position.y = row * style.tileSize + style.tileSize / 2;
+          tileSprite.position.x = col * style.tileSize + style.tileSize / 2;
+
+          var isTop = row == 0 || styleIndex != tiles[row - 1][col];
+          var isBottom = row == nRows - 1 || styleIndex != tiles[row + 1][col];
+          var isLeft = col == 0 || styleIndex != tiles[row][col - 1];
+          var isRight = col == nCols - 1 || styleIndex != tiles[row][col + 1];
+          var type = tileType(isTop, isBottom, isLeft, isRight);
+          tileSprite.cellIndex = type;
+        }
+      }
+    })
+  })
 }
 
-function parseRoom(roomSpec) {
-  var top = 0;
-  var bottom = 0;
-  var left = 0;
-  var right = 0;
-  var tiles = [];
-
-  var nPlatforms = roomSpec.platforms.length;
-  for (var i = 0; i < nPlatforms; i++) {
-    var platform = roomSpec.platforms[i];
-
-    top = Math.max(top, platform.top);
-    bottom = Math.min(bottom, platform.bottom);
-    left = Math.min(left, platform.left);
-    right = Math.max(right, platform.right);
-
-    var platformTiles = parsePlatform(platform);
-    tiles = tiles.concat(platformTiles);
-  }
-  return {
-    top: top,
-    bottom: bottom,
-    left: left,
-    right: right,
-    tiles: tiles,
-  };
-}
-
-function parsePlatform(platformSpec) {
-  var tiles = [];
-  for (var row = platformSpec.bottom; row <= platformSpec.top; row++) {
-    for (var col = platformSpec.left; col <= platformSpec.right; col++) {
-      tiles.push({
-        row: row,
-        col: col,
-        size: platformSpec.tileSize,
-        art: platformSpec.tileArt,
-        type: tileType(row, col, platformSpec),
-      })
+function countStyleOccurrences(tiles) {
+  var occurrences = [];
+  var nRows = tiles.length;
+  var nCols = tiles[0].length;
+  for (var row = 0; row < nRows; row++) {
+    for (var col = 0; col < nCols; col++) {
+      styleIndex = tiles[row][col];
+      if (occurrences.length > styleIndex && !Number.isNaN(occurrences[styleIndex])) {
+        occurrences[styleIndex]++;
+      } else {
+        occurrences[styleIndex] = 0;
+      }
     }
   }
-  return tiles;
+  return occurrences;
+}
+
+function createSpriteFactories(scene, styles, styleOccurrences) {
+  var nFactories = styles.length;
+  var spriteFactories = new Array(nFactories);
+  for (var i = 0; i < nFactories; i++) {
+    var style = styles[i];
+    var spriteCount = styleOccurrences[i];
+    spriteFactories[i] = spriteFactory(scene, style.tileArt, style.tileSize, style.tileArt, spriteCount);
+  }
+  return spriteFactories;
 }
 
 // there are 16 types of tile!
@@ -75,11 +76,6 @@ function parsePlatform(platformSpec) {
 //   left = 4
 //   right = 8
 // this makes middle/interor = 0 and singleton = 15
-function tileType(row, col, platformSpec) {
-  var isTop = row == platformSpec.top ? 1 : 0;
-  var isBottom = row == platformSpec.bottom ? 2 : 0;
-  var isLeft = col == platformSpec.left ? 4 : 0;
-  var isRight = col == platformSpec.right ? 8 : 0;
-  var type = isTop + isBottom + isLeft + isRight;
-  return type;
+function tileType(isTop, isBottom, isLeft, isRight) {
+  return isTop * 1 + isBottom * 2 + isLeft * 4 + isRight * 8;
 }
