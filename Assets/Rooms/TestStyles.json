@@ -1,21 +1,21 @@
 [{
     "shape": "rectangle",
-    "tileArt": "Assets/Sprites/TileTest.png",
+    "tileArt": "Assets/Sprites/HowDoesItCount.png",
     "tileSize": 32
   },
   {
     "shape": "beveled",
-    "tileArt": "Assets/Sprites/TileTest.png",
+    "tileArt": "Assets/Sprites/HowDoesItCount.png",
     "tileSize": 32
   },
   {
     "shape": "rectangle",
-    "tileArt": "Assets/Sprites/TileTest2.png",
+    "tileArt": "Assets/Sprites/HowDoesItCount.png",
     "tileSize": 32
   },
   {
     "shape": "beveled",
-    "tileArt": "Assets/Sprites/TileTest2.png",
+    "tileArt": "Assets/Sprites/HowDoesItCount.png",
     "tileSize": 32
   }
 ]
