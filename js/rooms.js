@@ -1,12 +1,20 @@
+//having trouble grokking spriteFactories and StyleOccurrences
+//room.js a module?
+// does this determine which type of tile to draw based on neighboring tiles? Or is
+//that manually determined by us when we create a JSON file?
+
+//How can I create my own JSON file?
+
 function loadRoom(scene, tileFile, styleFile) {
+//declare a callable function that loads a room
   processFile(tileFile, function(tileText) {
     var tiles = JSON.parse(tileText);
     var nRows = tiles.length;
     var nCols = tiles[0].length;
     console.log(`Tiles: ${nRows} rows x ${nCols} cols`);
-
     var styleOccurrences = countStyleOccurrences(tiles);
     console.log("Style occurrences: " + styleOccurrences);
+    //determines the size of the room & the number of tiles to draw?
 
     processFile(styleFile, function(styleText) {
       var styles = JSON.parse(styleText);
@@ -47,6 +55,7 @@ function countStyleOccurrences(tiles) {
     for (var col = 0; col < nCols; col++) {
       styleIndex = tiles[row][col];
       if (occurrences.length > styleIndex && !Number.isNaN(occurrences[styleIndex])) {
+        //isNan?
         occurrences[styleIndex]++;
       } else {
         occurrences[styleIndex] = 0;
