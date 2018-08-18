@@ -15,11 +15,15 @@ I think it will have some cool properties (whether or not they are the propertie
 And also some constraints, because everything has trade-offs.
 I think some properties and constraints of OATS are:
  - Works on a frame by frame basis.
+    //should we decide a frame rate? I'm starting to think about animations & drawing
  - Works one object at a time.
  - O(nObjects) complexity.  In that sense, it should "scale well".
  - Objects must have a total order.
+    // I'm not sure what a total order is
  - Doesn't care what we choose for collision shapes: rectangles, circles, sprite alpha channel, etc.
  - Only *detects* collisions, doesn't include motion physics, doesn't care what we choose.
+ // very good! we'll need to define many different types of collision (enemy collision,
+ wall collision, room edge/transition collision, health pickups, etc)
  - Should prevent "tunneling".
  - Should help prevent overlapping?
 
@@ -27,15 +31,17 @@ Setup
 
 We have n moving objects.
 They are sorted in some consistent order.
-Each object 
+Each object
  - has a fixed shape
  - has a position
  - can sweep out a path from old position to new position
+ //the sweep would be from current frame to next frame, right?
 
 We have a spatial grid.
 The grid resolution is the resolution of collision detection.
 Object positions are "in the grid" or can be mapped to the grid.
 We get a fresh grid on each frame.
+//is the grid resolution the camera resolution? the room resolution?
 
 For each frame OATS will report
  - which objects collided with which other objcets
@@ -71,6 +77,7 @@ For example, say it's moving to the right:
 0011111000
 
 The first object always gets to move how it wants.
+//how come? are we assuming it has a special designation? is it the PC(playercharacter)
 The first object is done.
 Its sweep path is now a "fact" for this frame.
 
@@ -103,6 +110,8 @@ Note that the collision happened near 1's start position and 2's end position.
 So didn't 1 get out of the way in time?
 No!  Because OATS considers sweep paths within a frame to be instantaneous.
 This is a deliberate simplification.
+//i think with a sufficiently high framerate that will be no problem!
+//does it mean that for each frame object 1 is in two places at once?
 
 The second object is done.
 Its sweep path is now another "fact" for this frame.
@@ -110,6 +119,7 @@ Its sweep path is now another "fact" for this frame.
 Continue with objects 3 through n, just like with object 2.
 Note that for object n, there are n-1 potential collisions.
 OATS would report them all.
+//then we would decide what the report means in terms of gameplay?
 
 Convention
 
@@ -118,6 +128,9 @@ So 1 never collides with any object.  But any object other can collide with 1.
 n can collide with any other object.  But no object can collide with n.
 This convention might matter, depending on how objects are ordered and how collisions are handled.
 Or it might not matter.  It's up to the game.
+//This seems like a great way to organize/think about collision events.
+//it forces us to answer important questions
+
 
 Discussion
 
@@ -132,17 +145,26 @@ All the objects do all their motion in one instant.
 This is why we can use an arbitrary ordering of objects and handle collisions one at a time.
 If it's all instantaneous, there is no "true" order.
 So just pick an order and keep it consistent.
+//the order can also be a helpful organizational tool!
+
 
 I was thinking, probably static terrain should come first.
 These objects can always just sweep out where they are and claim that space.
 The game logic might be able to assume the object being "collided with" stays put?
 This would make sense for static terrain, anyway.
 I'm not sure what comes next, the player?  Bullets etc?  Doesn't matter?
+//maybe a rough order would be like
+1. terrain
+2. non static terrain
+3. the PC
+4. i'd go on but maybe it doesn't matter
+
 
 The grid used by OATS could be any size.
 It could be coarser than pixels, corresponding to pixels, or finer than pixels.
 Probably we should just make it correspond to pixels, right?
 Unless we discover a reason to do otherwise.
+//agreed
 
 OATS should generalize to any dimensionality of grid.
 
@@ -150,6 +172,7 @@ Question / TODO
 
 How should the sweep path be calculated?
 Should the game do it, or OATS?
+//I don't think i understand the difference
 The game might want to compute crazy paths for fun.
 But it might also be easy to make mistakes.
 And it might require access to the grid, which seems to break a nice encapsulation.
@@ -158,6 +181,9 @@ If OATS does it, it will probably simplify by doing linear interpolation.
 Which seems fair within a frame.
 This could be handy for the game.
 The game could just supply start position, shape, delta x, and delta y.
+//yeah. Wouldn't OATS just check where something wants to be on a frame by frame basis?
+//I can't imagine something moving in a line (no matter how squiggly) that couldn't be
+// handled per frame
 
 I'm tempted to say OATS could also apply the sweep in a time-forward fashion,
 which would alow for reporting the *first* collision, as opposed to *all* collisions.
@@ -174,6 +200,8 @@ But it should have happened "in the middle".
 Maybe better to let the game figure this out.
 However, this error may be "in the noise".
 It will always be less than a frame.
+//could this error also be addressed when we define consequences for different collision types?
+
 
 How would I implement time-forward sweeping?
 I'd have to decide how to do the linear sampling.
@@ -184,11 +212,20 @@ Report collisions at the first position where the shape hits one or more nonzero
 But do finish the drawing the whole shape in case there are multiple hits at that location.
 
 I'm thinking sampling increments of 1 would guarantee no grid skipping.
-Smaller increments should work just as well, but be redundant. 
+Smaller increments should work just as well, but be redundant.
 Larger increments would be guaranteed to cause skiping when moving horizontally or vertically.
 
 This would mean the complexity of the algorithm is more like O(nObjects * meanDeltaR)
 meanDeltaR seems like a large factor to drag around.
+// i don't think i know what R is in this case
 But I still am enjoying this algorithm.
 Maybe there's a better way to sweep out paths?
+//is a path defined as the area on the grid that a given object wants to occupy in the upcoming frame?
 
+
+// am i right in thinking that the logic per frame is this:
+1. object from game wants to move
+2. game reports movement to OATS
+3. oats reports whether a collision occurred
+4. game determines consequences
+5. repeat for next frame
