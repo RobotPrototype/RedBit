@@ -1,0 +1,28 @@
+
+Movement Speed Variables
+var hSpeed
+var vSpeed
+var maxSpeed
+var decelerate
+var gravity
+//just thinking ahead about possible ways for the robot to move
+
+define input bindings
+wait for key left, right, up, down, special mvmnt button
+// allow for player to select key bindings
+
+wait for input event
+
+Left & Right
+If{
+	left or right pressed down
+	accelerate to max hSpeed for movement type
+else
+	decelerity quickly to zero}
+
+//&many more conditions for movement, each calling the appropriate speed type
+
+Actually moving the character
+set Movement Speed variables to call a function that redraws the sprite in the appropriate direction, and calls the proper animation
+
+??How should the drawing take place?? most possible updates (keep a very close eye on all player input)

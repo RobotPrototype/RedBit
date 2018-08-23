@@ -1,0 +1,32 @@
+Player Character Concepts:
+	Alien bi-pedal probe. Designed as a research robot with a strong, specific
+	purpose. It's crash landing disrupts that purpose. The probe's initial mission
+	in the game is to self-repair. The game should be feel like a process of
+	self-discovery, actualization and recovery. The robot will interface with XXXX
+	technology and undergo an alchemical process that causes it to become a
+	unique lifeform with self-awareness and determination. The probe will discover
+	 metals to upgrade itself, as well as various bits of tech (far-flung pieces
+	 of its capsule, as well as XXXX tech). As the probe rebuilds itself, it
+	 begins to radiate a signal that it's creators discover (creators will attempt
+	  to selfishly mine/harvest the resources of the planet). Also, via
+		interactions with the "shepherds" it will become protective of the XXXX
+		enclave. It will understand the life occupying the planet as the survivors
+		of XXXX as well. The Creators of the Probe will have to be deterred. At end
+		of game it is the custodian of the planetoid, guarding it as long as it can.
+
+Upgrade ideas:
+	Upgrades will be found either as entire bits of tech, or the probe will
+	harvest metallic veins to give it raw materials to develop its own upgrades.
+	These self-made upgrades will mimic the life on the planet. They will also be
+	reskins of different metals (a la Varia Suit in Metroid) to indicate heat
+	resistance/etc. Some of these upgrades will be arm replacements, leg
+	replacements/whatever the probe should feel very modular, very like a fun robot.
+	mechanics:
+	-Light Source
+	-Jet Pack
+	-Drill
+	-Grappling Hook
+	-Speedy wheels
+	-Wall climb
+	-Compact mode
+	-metallic upgrades (for defense/heat/cold/water)

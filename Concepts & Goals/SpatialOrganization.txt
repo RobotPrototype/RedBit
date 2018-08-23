@@ -1,0 +1,9 @@
+heirarchy of scales (big to small)
+	whole game
+	world map (overview of the entire world)
+		-organizational
+	regions
+		-contains region specific assets
+	rooms
+		-draw the smallest rectangle that will encompass your 			room design
+	grid of geometry and tiles

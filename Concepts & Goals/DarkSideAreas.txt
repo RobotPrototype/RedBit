@@ -1,0 +1,40 @@
+Darkside:
+	The dark side is characterized by it's coldness and darkness. There is a
+	great deal of ice, poison, and mysterious&frightening creatures. The life that
+	 inhabits this side is less evolved then on the light side; there are more
+	 insects and reptiles, and much more of it is hostile. The impact of the
+	 comet also left this area much more jagged and sharp and harsh.
+
+	Comet Crater Alpha:
+		The impact of Comet Alpha unlocked a vast subterranean sea. This sea leaked
+		out 	and now is a massive sea on the surface. In the center of this sea is
+		a large iceberg (the 	remnants of the comet). The iceberg rises like an out
+		of place mountain in the center of 	that sea. There will be strange alien
+		life on the inside of the comet (awoken by proximity 	to the planetoids heat)
+		Areas of Note:
+		- inside of the comet you will be able to ascend the comet via an entrance
+		at the bottom of the sea.
+		-large underwater landscape to explore
+		-One side of this crater leads to the mountain that is a barrier to the
+		lightside.
+	Color Scheme:
+		Purples, Dark greens, dark blues, etc
+		Comet will be icy blues/whites/cyans
+
+	Comet Crater Beta:
+		Beta's impact created a massive sunken crater. It is a snowy desert.
+		Many large glacial chunks of the comet remain. Unlike Alpha, comet Beta
+		shattered completely upon impact.
+		Areas of Note:
+		-snowy caves
+
+	ColorScheme:
+		-White/grey (dirty snow)
+		-purple soil below the snow
+
+	Maze of Darkness:
+		Bordering the lightside highlands will be a maze of darkness.
+		It will be a difficult area to traverse, and will be the players
+		first foray onto the dark-side.
+	ColorScheme:
+		Value scale of Black/Purple

@@ -1,0 +1,47 @@
+Light Side:
+	The light side of the planet would be mostly barren.  It is full of craters,
+	plains and mountains. Certain lifeforms have begun to adapt to and live on the
+	 surface, but it is largely quiet and moon-like. Occasional meteorites strike
+	 the surface. The vegetation leaking from XXXX has yet to adapt to the harsh
+	 exposure of the surface. Many caves lead underground, and that is where life
+	  is thriving most.
+	Starting Area/Lowlands:
+	This area will also be where XXXX- drilled into the center of the planet from.
+	The mineshaft they used will be discoverable.
+	The color scheme of this area will be:
+		-Yellow, brown, and grey.
+		-near cavemouths there will be some green and grasses
+	Areas of note in the Lowlands:
+		-A mountain acts as a barrier between this area and the dark side of the
+		planet. The mountain is on of the the planetoids poles.
+		-Probe Capsule crash site (starting area)
+		-A cave mouth leading to the Subterranean Jungle
+		-A smaller mountain to explore once you've gained more mobility.
+		if you cross this mountain you access a more difficult lightside area, which
+		 contains the lava falls that fall from the Highlands.
+
+	Subterranean Jungle:
+	Home to most of the life on the planet. A wide variety of life lives here,
+	especially vegetation. Sort of like the first area in Super Metroid. There is
+	liquid water here, to create ponds and falls. The life in this area was seeded
+	 by the cracking of the bio dome created by XXXX.
+	ColorScheme:
+		Greens, Blues, brown, gold(wheat-gold)
+	Areas of Note:
+
+	Highlands:
+	There is an elevated plateau covering roughly 33% of the Light side. This area
+	is much hotter then the rest of the light side. There is lava, deadly gas and
+	other dangers there. This area is also more prone to meteorite strikes.
+	There is a volcano there. Certain creatures have adapted to the heat. There is
+	a lava-fall that acts as a barrier between this area and the Lowlands.
+	ColorScheme:
+		-Reds, browns, oranges, blacks, and greys.
+	Areas of note:
+		-There is a lava-fall that acts as a barrier between this area and the Lowlands.
+
+	Volcanic Caves
+	This is the area directly beneath the highlands. large lava flows have carved
+	out massive caverns here the run directly to the planetoids core.
+	ColorScheme:
+		-Reds, browns, oranges, blacks, and greys.
