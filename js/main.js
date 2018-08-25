@@ -42,8 +42,8 @@ function main(canvasName) {
 
   var context = createContext(canvasName);
 
-  var tileFile = "Assets/Rooms/TestTiles.json";
-  var styleFile = "Assets/Rooms/TestStyles.json";
+  var tileFile = "Assets/Rooms/Hallway.json";
+  var styleFile = "Assets/Rooms/LSurface.json";
   loadRoom(context.scene, tileFile, styleFile)
 
   BABYLON.Tools.RegisterTopRootEvents([{

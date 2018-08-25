@@ -9,7 +9,7 @@ function createContext(canvasName) {
   var canvas = document.getElementById(canvasName);
   var engine = new BABYLON.Engine(canvas);
   var scene = new BABYLON.Scene(engine);
-  scene.clearColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+  scene.clearColor = new BABYLON.Color3(.1, .5, .5);
 
   camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 0, 0), scene);
   camera.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
